@@ -12,6 +12,7 @@
 ;;
 ;;You should have received a copy of the GNU General Public License
 ;;along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;;
 (asdf:defsystem #:cl-rc-test
 	:name "cl-rc-test"
 	:author "Pocket7878 <poketo7878@yahoo.co.jp>"
