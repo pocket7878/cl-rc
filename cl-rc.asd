@@ -17,4 +17,5 @@
 	   :license "GPLv3"
 	   :components
 	   ((:file "package")
-	    (:file "cl-rc" :depends-on ("package"))))
+	    (:file "cl-rc" :depends-on ("package")))
+	   :depends-on (:cl-irregsexp :cl-interpol))

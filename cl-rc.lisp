@@ -16,10 +16,8 @@
 (in-package :cl-rc)
 
 (defun get-value-from-rc-line (line)
-  (multiple-value-bind (match reg)
-    (cl-ppcre:scan-to-strings "(.*?)[:=](.*)" line)
-    (declare (ignore key item))
-    (cons (aref reg 0) (aref reg 1))))
+  (cl-irregsexp:if-match-bind (key (or "=" ":") value) line 
+			      (cons key line)))
 
 (defun parse-rc-file (file-path)
   (with-open-file (rc-input file-path :direction :input :if-does-not-exist nil)
