@@ -12,10 +12,12 @@
 ;;
 ;;You should have received a copy of the GNU General Public License
 ;;along with this program.  If not, see <http://www.gnu.org/licenses/>.
-(defsystem :cl-rc
+(asdf:defsystem :cl-rc
 	   :version "1.0"
 	   :license "GPLv3"
 	   :components
-	   ((:file "package")
-	    (:file "cl-rc" :depends-on ("package")))
+	   ((:module :src
+		     :components (
+				  (:file "package")
+				  (:file "cl-rc" :depends-on ("package")))))
 	   :depends-on (:cl-irregsexp :cl-interpol))
