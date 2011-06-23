@@ -16,5 +16,8 @@
 (cl:defpackage :cl-rc
   (:use :common-lisp :cl-irregsexp :cl-interpol)
   (:export
+    #:vars
+    #:param 
+    #:update
     #:get-value-from-rc-line
     #:parse-rc-file))
