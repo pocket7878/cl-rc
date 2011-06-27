@@ -28,12 +28,20 @@
   (5am:is (equal (cl-rc:get-value-from-rc-line "TEST:1") 
 		 (cons "TEST" "1"))))
 (5am:in-suite parse-file)
-(5am:test parse-rc-file-able
+(5am:test parse-rc-file-test
  (5am:is (not (null (cl-rc:parse-rc-file ".\\t\\test-rc-file")))))
-(5am:test get-param-able
+(5am:test get-param-test
  (5am:is (equal "1" (cl-rc:param 
 		      (cl-rc:parse-rc-file ".\\t\\test-rc-file")
 		      "TEST")))
  (5am:is (equal "2" (cl-rc:param 
 		      (cl-rc:parse-rc-file ".\\t\\test-rc-file")
 		     "TEST2"))))
+(5am:test update-data-test
+	  (5am:is (equal "dat" (let ((cfg  (cl-rc:parse-rc-file ".\\t\\test-rc-file")))
+				 (cl-rc:update cfg "TEST" "dat")
+				 (cl-rc:param cfg  "TEST")))))
+(5am:test add-new-data-test
+ (5am:is (equal "dat" (let ((cfg  (cl-rc:parse-rc-file ".\\t\\test-rc-file")))
+			(cl-rc:update cfg "TEST3" "dat")
+			(cl-rc:param cfg  "TEST3")))))

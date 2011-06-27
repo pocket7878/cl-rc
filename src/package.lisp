@@ -19,5 +19,6 @@
     #:vars
     #:param 
     #:update
+    #:save
     #:get-value-from-rc-line
     #:parse-rc-file))

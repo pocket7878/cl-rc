@@ -16,7 +16,7 @@
 (in-package :cl-rc)
 
 (defclass config ()
-  ((filepath :initform nil :initarg :filepath)
+  ((filepath :initform nil :initarg :filepath :reader filepath)
    (data :initform nil :initarg :data :accessor data)))
 
 (defmethod param ((cfg config) key)
@@ -31,6 +31,17 @@
 (defmethod update ((cfg config) key value)
   (with-slots (data) cfg
     (setf (gethash key data) value)))
+
+;; save data
+(defmethod save ((cfg config) &optional file-path)
+  (let ((out-stm (if file-path
+		   (open file-path :direction :output :if-does-not-exist :create)
+		   (open (filepath cfg) :direction :output :if-does-not-exist :create :if-exists :supersede))))
+    (maphash  #'(lambda (key value) 
+			    (format out-stm "~A=~A~%" key value))
+	      (vars cfg))
+    (close out-stm)))
+    
 
 (defun alist-to-hash (alist)
   (let ((hash (make-hash-table :test #'equal)))
